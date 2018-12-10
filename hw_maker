@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Homework PDF Maker"
+fpdfName="hw_dec_10.pdf"
+wget -i list.txt
+mkdir small
+
+for f in *.pdf
+do
+	pdftk $f cat 1 output small/$f
+	rm $f
+done 
+
+pdftk small/* cat output $fpdfName
+rm -r small
